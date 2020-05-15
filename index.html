@@ -36,8 +36,8 @@
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
   <button id="btnClose" onclick="closed()">Close</button>
 
-  <!-- <script src="js/vconsole.min.js"></script> -->
-  <!-- <script>
+  <-- <script src="js/vconsole.min.js"></script> -->
+  <-- <script>
     var vConsole = new VConsole()
     console.log("Hello World!")
   </script> -->
@@ -72,7 +72,15 @@
     }
 
     async function getUserProfile() {
+        const profile = await liff.getProfile()
+        document.getElementById("pictureUrl").src = profile.pictureUrl
+        document.getElementById("userId").append(profile.userId)
+        document.getElementById("statusMessage").append(profile.statusMessage)
+        document.getElementById("displayName").append(profile.displayName)
+        document.getElementById("decodeIDToken").append(liff.getDecodeIDToken().email)
     }
+    }
+
 
     function getEnvironment() {
       document.getElementById("os").append(liff.getOS())
@@ -91,7 +99,7 @@
     async function main() {
       await liff.init({ liffId: "1654215965-1nxqNgrr" })
       getEnvironment()
-      // getUserProfile()
+      getUserProfile()
       // getContext()
       // getFriendship()
       // createUniversalLink()
